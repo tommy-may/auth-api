@@ -1,19 +1,17 @@
 services:
   # Database MongoDB
   mongodb:
-    image: mongodb/mongodb-community-server:latest
     container_name: mongodb
-    restart: unless-stopped
+    image: mongodb/mongodb-community-server:latest
     ports:
-      - '27017:27017'
-    env_file:
-      - .env
+      - '${DB_PORT:-27017}:27017'
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
       MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
       MONGO_INITDB_DATABASE: ${DB_NAME}
     volumes:
       - mongodb:/data/db
+    restart: unless-stopped
 
 volumes:
   mongodb:

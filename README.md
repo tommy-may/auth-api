@@ -56,5 +56,5 @@ Copy the file named `.env.example` and rename it `.env.production` in the root o
 **Running the Project**
 
 ```bash
-docker-compose up -d
+docker-compose --env-file .env.production up -d
 ```
