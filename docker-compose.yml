@@ -12,13 +12,34 @@ services:
       # Mount logs directory for production logging
       - logs:/app/logs
     restart: unless-stopped
+    ports:
+      - '3000:3000'
     networks:
-      - node-net-prod
+      - app-network
+    depends_on:
+      - mongodb
+  # Database MongoDB
+  mongodb:
+    image: mongodb/mongodb-community-server:latest
+    container_name: mongodb
+    restart: unless-stopped
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${DB_USER}
+      MONGO_INITDB_ROOT_PASSWORD: ${DB_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DB_NAME}
+    volumes:
+      - mongodb:/data/db
+    networks:
+      - app-network
 
 networks:
-  node-net-prod:
+  app-network:
     driver: bridge
 
 volumes:
   logs:
+    # external: true
+  mongodb:
     # external: true

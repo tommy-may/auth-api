@@ -23,4 +23,23 @@ export const env = {
     level: parsed.data.LOG_LEVEL,
     dir: parsed.data.LOG_DIR,
   },
+  port: parsed.data.PORT,
+  host: parsed.data.HOST,
+  db: {
+    user: parsed.data.DB_USER,
+    password: parsed.data.DB_PASSWORD,
+    host: parsed.data.DB_HOST,
+    port: parsed.data.DB_PORT,
+    name: parsed.data.DB_NAME,
+  },
+  jwt: {
+    'access-token': {
+      secret: parsed.data.JWT_SECRET,
+      expires: parsed.data.JWT_EXPIRES_IN,
+    },
+    'refresh-token': {
+      secret: parsed.data.JWT_REFRESH_SECRET,
+      expires: parsed.data.JWT_REFRESH_EXPIRES_IN,
+    },
+  },
 };

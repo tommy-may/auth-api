@@ -29,11 +29,21 @@ pnpm install
 
 Copy the file named `.env.example` and rename it `.env` in the root of your project and replace the placeholder values with yours.
 
+**Set Up MongoDB**
+
+Start the MongoDB container using docker:
+
+```bash
+docker-compose -f docker-compose.dev.yml up -d
+```
+
 **Running the Project**
 
 ```bash
 npm run start:dev
 ```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser to view the project.
 
 ## Deployment
 
