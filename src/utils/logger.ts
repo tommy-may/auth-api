@@ -45,7 +45,7 @@ const logger = pino({
     level: (label) => ({ level: label.toUpperCase() }),
   },
   timestamp: pino.stdTimeFunctions.isoTime,
-  // nestedKey: "data",
+  // nestedKey: 'data',
   transport: transport[env.node_env],
 });
 
@@ -53,16 +53,16 @@ export const log = {
   error: (message: string, err: unknown) => {
     logger.error({ err }, message);
   },
-  warn: <T extends object>(message: string, data: T | null = null) => {
+  warn: <T extends object>(message: string, data?: T) => {
     logger.warn({ data }, message);
   },
-  info: <T extends object>(message: string, data: T | null = null) => {
+  info: <T extends object>(message: string, data?: T) => {
     logger.info({ data }, message);
   },
   http: (message: string) => {
     logger.http(message);
   },
-  debug: <T extends object>(message: string, data: T | null = null) => {
+  debug: <T extends object>(message: string, data?: T) => {
     logger.debug({ data }, message);
   },
 };

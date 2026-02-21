@@ -13,7 +13,9 @@ dotenv.config({ path: envFile[NODE_ENV], quiet: true });
 const parsed = envSchema.safeParse({ ...process.env });
 
 if (!parsed.success) {
-  console.error('env', parsed.error.issues);
+  console.error(
+    `Error parsing ${envFile[NODE_ENV]} file: ${parsed.error.message}`
+  );
   process.exit(1);
 }
 

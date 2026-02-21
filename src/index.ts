@@ -3,7 +3,9 @@ import mongodb from '#/db/mongodb';
 import server from '#/server';
 import { log } from '#/utils/logger';
 
-log.info(`Project started in ${env.node_env.toUpperCase()} mode`);
+log.info(
+  `${process.env.npm_package_name.toUpperCase()} started in ${env.node_env.toUpperCase()} mode`
+);
 
 process.on('uncaughtException', (err) => {
   log.error(err.message, err);
@@ -25,7 +27,7 @@ process.on('uncaughtException', (err) => {
 });
 
 process.on('SIGTERM', (signal) => {
-  log.warn('Received Signal', { signal });
+  log.warn(`Received signal ${signal}`);
 
   mongodb.closeAllConnection();
 

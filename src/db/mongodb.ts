@@ -11,12 +11,16 @@ const mongodb = {
       const uri = `mongodb://${user}:${password}@${host}:${port}/${name}?authSource=admin`;
       mongodb.connection = await mongoose.connect(uri);
 
-      const version = mongodb.connection.version;
-      log.info('Database connected', { version, name });
+      log.info(`Connected to database at mongodb://${host}:${port}/${name}`);
     } catch (err) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { message, code } = err as any;
-      console.error(message, code);
+      const { message, code } = err as {
+        message: string;
+        code: number | undefined;
+      };
+
+      console.error(
+        `Error connecting to database (${code || 'unknown'}): ${message}`
+      );
       process.exit(1);
     }
   },
